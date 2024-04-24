@@ -1,11 +1,13 @@
     .text
 main:
+  # true && false
   li $t0, 1 # True
   li $t1, 0 # False
   and $t2, $t0, $t1 # True && False
   move $a0, $t2
   jal print_boolean
 
+  # if 3 <> 4 then 10 * 2 else 14
   li $t0, 4
   li $t1, 4
 
@@ -29,7 +31,26 @@ if_block_1:
 end_if_1:
   jal print_integer
 
-  
+  # 2 = 3 || 4 <= 2*3
+
+  li $t0, 2
+  li $t1, 3
+
+  seq $t2, $t0, $t1 # 2 = 3
+
+  li $t0, 2
+  li $t1, 3
+  mul $t0, $t0, $t1 # 2*3
+
+  li $t1, 4
+  sle $t3, $t1, $t0 # 4 <= 2*3
+
+  or $t0, $t2, $t3
+
+  move $a0, $t0
+
+  jal print_boolean
+
   li  $v0, 10 # exit
   syscall
 
