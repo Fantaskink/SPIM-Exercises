@@ -14,13 +14,14 @@ print_1:
   mul $t1, $t0, $t0
 
   move $a0, $t1
-  jal print_integer
 
   addi $sp, $sp, 4 # Restore the stack pointer
+  
+  jal print_integer
 
   jr $ra
 
-print_integer: 
+print_integer:
   li $v0, 1 # Load syscall code 1 (print integer) into $v0
   syscall
 
